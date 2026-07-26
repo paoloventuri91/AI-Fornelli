@@ -106,6 +106,15 @@
     "likePrompt": "Did you like it?",
     "votesHint": "votes guide the AI"
   },
+  "list": {
+    "title": "Shopping list",
+    "progress": "{done}/{total} picked",
+    "regenerate": "Regenerate from the week",
+    "empty": "No items yet. Generate the list from this week's dishes.",
+    "addPlaceholder": "Add something…",
+    "manual": "manual",
+    "pantryNote": "The pantry will be subtracted automatically."
+  },
   "member": {
     "title": "Member",
     "name": "Name",

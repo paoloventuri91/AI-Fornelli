@@ -106,6 +106,22 @@ export const meals = sqliteTable('meals', {
   absentProfilesJson: text('absent_profiles_json').notNull().default('[]'),
 });
 
+// Voci della lista della spesa per settimana. Le voci "auto" derivano dai piatti
+// pianificati; le "manual" sono aggiunte a mano. La rigenerazione preserva gli spunti
+// (per nome+unità) e le righe manuali.
+export const shoppingItems = sqliteTable('shopping_items', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  weekStart: text('week_start').notNull(),
+  name: text('name').notNull(),
+  nameNormalized: text('name_normalized').notNull(),
+  quantity: real('quantity'),
+  unit: text('unit', { enum: UNITS }).notNull(),
+  checked: integer('checked', { mode: 'boolean' }).notNull().default(false),
+  source: text('source', { enum: ['auto', 'manual'] })
+    .notNull()
+    .default('auto'),
+});
+
 // Voti per persona su un piatto: +1 (piaciuto) / -1 (non piaciuto), uno per (profilo, piatto).
 export const votes = sqliteTable(
   'votes',
@@ -127,6 +143,7 @@ export type NewProfile = typeof profiles.$inferInsert;
 export type MealSlot = typeof mealSlots.$inferSelect;
 export type Settings = typeof settings.$inferSelect;
 export type Vote = typeof votes.$inferSelect;
+export type ShoppingItem = typeof shoppingItems.$inferSelect;
 export type Dish = typeof dishes.$inferSelect;
 export type DishIngredient = typeof dishIngredients.$inferSelect;
 export type WeekPlan = typeof weekPlans.$inferSelect;

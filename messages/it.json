@@ -106,6 +106,15 @@
     "likePrompt": "Vi è piaciuto?",
     "votesHint": "i voti guidano l'AI"
   },
+  "list": {
+    "title": "Lista della spesa",
+    "progress": "{done}/{total} presi",
+    "regenerate": "Rigenera dalla settimana",
+    "empty": "Nessuna voce. Genera la lista dai piatti della settimana.",
+    "addPlaceholder": "Aggiungi qualcosa…",
+    "manual": "manuale",
+    "pantryNote": "La dispensa verrà sottratta automaticamente."
+  },
   "member": {
     "title": "Membro",
     "name": "Nome",
