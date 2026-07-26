@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "AI Fornelli",
+    "tagline": "Il tuo menu della settimana"
+  },
+  "cal": {
+    "short": ["L", "M", "M", "G", "V", "S", "D"]
+  },
+  "nav": {
+    "plan": "Piano",
+    "list": "Lista",
+    "pantry": "Dispensa",
+    "chat": "Chat",
+    "settings": "Impostazioni"
+  },
+  "common": {
+    "continue": "Continua",
+    "back": "Indietro",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "add": "Aggiungi",
+    "done": "Fine",
+    "comingSoon": "In arrivo",
+    "comingSoonBody": "Questa sezione arriva in una fase successiva."
+  },
+  "wizard": {
+    "step1Title": "Benvenuto in AI Fornelli",
+    "step1Sub": "In che lingua vuoi l'app e i contenuti generati dall'AI?",
+    "langItalian": "Italiano",
+    "langItalianHint": "UI e piatti in italiano",
+    "langEnglish": "English",
+    "langEnglishHint": "UI and dishes in English",
+    "step2Title": "Chi mangia a casa?",
+    "step2Sub": "Vincoli e preferenze guidano l'AI; le porzioni scalano le dosi.",
+    "addMember": "Aggiungi membro",
+    "noConstraints": "Nessun vincolo",
+    "portion": "porzione {factor}×",
+    "step3Title": "Quali pasti pianifichiamo?",
+    "step3Sub": "Scegli un preset o personalizza la griglia.",
+    "presetDinners": "Solo cene",
+    "presetDinnersWeekend": "Cene + weekend completo",
+    "presetAll": "Tutti i pasti",
+    "slotLunch": "Pranzo",
+    "slotDinner": "Cena",
+    "step4Title": "Cervello in cucina",
+    "step4Sub": "L'AI passa da OpenRouter; la chiave sta nel .env del server.",
+    "keyFound": "OPENROUTER_API_KEY trovata",
+    "keyMissing": "OPENROUTER_API_KEY assente nel .env",
+    "model": "Modello",
+    "testConnection": "Prova la connessione",
+    "finish": "Fine → al piano"
+  },
+  "member": {
+    "title": "Membro",
+    "name": "Nome",
+    "constraints": "Vincoli alimentari",
+    "constraintsHint": "es. niente pesce, vegetariano",
+    "preferences": "Preferenze",
+    "preferencesHint": "es. ama la pasta, non ama i funghi",
+    "portionFactor": "Fattore porzione"
+  },
+  "profileSelect": {
+    "title": "Chi sei?",
+    "sub": "Serve solo per attribuire voti e azioni"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "languageSection": "Lingua",
+    "languageLabel": "Lingua di app e contenuti AI",
+    "languageNote": "Cambiare lingua non traduce i piatti già salvati.",
+    "aiSection": "Modello AI",
+    "modelLabel": "Modello OpenRouter",
+    "overrideLabel": "Override libero",
+    "overridePlaceholder": "es. mistralai/mistral-large",
+    "weekSection": "Settimana",
+    "weekStartLabel": "Inizio settimana",
+    "monday": "Lunedì",
+    "sunday": "Domenica",
+    "membersSection": "Membri e pasti",
+    "slotsSummary": "Slot pasti: {slots}",
+    "saved": "Salvato",
+    "version": "AI Fornelli v0.1"
+  }
+}

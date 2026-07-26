@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "AI Fornelli",
+    "tagline": "Your menu for the week"
+  },
+  "cal": {
+    "short": ["M", "T", "W", "T", "F", "S", "S"]
+  },
+  "nav": {
+    "plan": "Plan",
+    "list": "List",
+    "pantry": "Pantry",
+    "chat": "Chat",
+    "settings": "Settings"
+  },
+  "common": {
+    "continue": "Continue",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "done": "Done",
+    "comingSoon": "Coming soon",
+    "comingSoonBody": "This section arrives in a later phase."
+  },
+  "wizard": {
+    "step1Title": "Welcome to AI Fornelli",
+    "step1Sub": "Which language do you want for the app and AI-generated content?",
+    "langItalian": "Italiano",
+    "langItalianHint": "UI and dishes in Italian",
+    "langEnglish": "English",
+    "langEnglishHint": "UI and dishes in English",
+    "step2Title": "Who eats at home?",
+    "step2Sub": "Constraints and preferences guide the AI; portions scale the amounts.",
+    "addMember": "Add member",
+    "noConstraints": "No constraints",
+    "portion": "portion {factor}×",
+    "step3Title": "Which meals do we plan?",
+    "step3Sub": "Pick a preset or customize the grid.",
+    "presetDinners": "Dinners only",
+    "presetDinnersWeekend": "Dinners + full weekend",
+    "presetAll": "All meals",
+    "slotLunch": "Lunch",
+    "slotDinner": "Dinner",
+    "step4Title": "Brains in the kitchen",
+    "step4Sub": "The AI goes through OpenRouter; the key lives in the server .env.",
+    "keyFound": "OPENROUTER_API_KEY found",
+    "keyMissing": "OPENROUTER_API_KEY missing from .env",
+    "model": "Model",
+    "testConnection": "Test the connection",
+    "finish": "Done → to the plan"
+  },
+  "member": {
+    "title": "Member",
+    "name": "Name",
+    "constraints": "Dietary constraints",
+    "constraintsHint": "e.g. no fish, vegetarian",
+    "preferences": "Preferences",
+    "preferencesHint": "e.g. loves pasta, dislikes mushrooms",
+    "portionFactor": "Portion factor"
+  },
+  "profileSelect": {
+    "title": "Who are you?",
+    "sub": "Only used to attribute votes and actions"
+  },
+  "settings": {
+    "title": "Settings",
+    "languageSection": "Language",
+    "languageLabel": "App and AI content language",
+    "languageNote": "Changing the language does not translate already-saved dishes.",
+    "aiSection": "AI model",
+    "modelLabel": "OpenRouter model",
+    "overrideLabel": "Free override",
+    "overridePlaceholder": "e.g. mistralai/mistral-large",
+    "weekSection": "Week",
+    "weekStartLabel": "Week start",
+    "monday": "Monday",
+    "sunday": "Sunday",
+    "membersSection": "Members and meals",
+    "slotsSummary": "Meal slots: {slots}",
+    "saved": "Saved",
+    "version": "AI Fornelli v0.1"
+  }
+}

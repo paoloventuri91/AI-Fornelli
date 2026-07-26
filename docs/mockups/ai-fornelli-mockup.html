@@ -1,0 +1,779 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"capabilities":{"downloads":"downloads.BABDwU1K.js","mcp":"mcp.hoz5jxDa.js","permissions":"permissions.ByA9Fd8x.js","self":"self.D3u1zjZe.js","user":"user.Cp1-RnjB.js"},"transforms":"_transforms.DYk1Ltlh.js","comments":"_comments.DiwQajF_.js","translate":"_translate.C5leZL2A.js"}</script><script>(function(){"use strict";const Ee="modulepreload",we=function(e){return"/"+e},Se={},ee=function(t,n,l){let i=Promise.resolve();function s(f){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=f,window.dispatchEvent(c),!c.defaultPrevented)throw f}return i.then(f=>{for(const c of f||[])c.status==="rejected"&&s(c.reason);return t().catch(s)})},te=["light","dark","system"];function ne(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function W(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function re(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const n=t.theme;return typeof n=="string"&&te.includes(n)}function se(e){try{typeof reportError=="function"?reportError(e):setTimeout(()=>{throw e},0)}catch{}}const oe=Object.freeze(Object.assign(Object.create(null),{user:Object.freeze(Object.assign(Object.create(null),{id:null,isOwner:!1,canEdit:!1,name:null,avatarUrl:null,email:null}))}));function Y(e){if(window===top||e.type==="auxclick"&&e.button!==1)return;const t=e.composedPath?e.composedPath():[e.target];let n=null;for(let f=0;f<t.length;f++){const c=t[f];if(c&&c.matches&&c.matches("a[href],area[href]")){n=c;break}}if(!n&&e.target&&e.target.closest&&(n=e.target.closest("a[href],area[href]")),!n)return;const l=n.getAttribute("href");if(!l)return;let i,s;try{i=new URL(l,document.baseURI),s=new URL(document.baseURI).origin}catch{return}(i.protocol==="http:"||i.protocol==="https:")&&i.origin!==s&&(e.preventDefault(),parent.postMessage({__frame_nav:!0,url:i.href},"*"))}const K={};function D(e){if(window===top)return;const t=Date.now();t-(K[e]||0)<500||(K[e]=t,parent.postMessage({__frame_engaged:!0,kind:e},"*"))}const ie=2e3,x=["wheel","touchstart","touchmove","keydown","pointerdown"];let J=0;function ae(e){e.isTrusted&&(J=Date.now())}function ce(){addEventListener("click",Y,!0),addEventListener("auxclick",Y,!0)}function le(){for(let e=0;e<x.length;e++)addEventListener(x[e],ae,{capture:!0,passive:!0});addEventListener("scroll",e=>{e.isTrusted&&Date.now()-J<ie&&D("scroll")},{capture:!0,passive:!0}),addEventListener("pointermove",e=>{e.isTrusted&&D("pointer")},{capture:!0,passive:!0}),addEventListener("click",e=>{e.isTrusted&&D("click")},{capture:!0,passive:!0})}const I="__frame_scroll",ue=150,fe=310,de=160,me=3e4;function pe(){let e=0,t=!1,n=!1,l=!1,i=0;const s=a=>{try{sessionStorage.setItem(I,JSON.stringify({y:a}))}catch{}},f=()=>{if(t){t=!1;return}n=!0,clearTimeout(e),e=setTimeout(()=>s(scrollY),ue)};try{addEventListener("scroll",f,{passive:!0}),addEventListener("pagehide",()=>{clearTimeout(e),s(scrollY)})}catch{}const c=()=>{let a;try{a=sessionStorage.getItem(I)}catch{return null}if(a===null)return null;let _;try{_=JSON.parse(a)}catch{_=null}const m=_?.y;if(!(typeof m=="number"&&Number.isFinite(m)&&m>=0)){try{sessionStorage.removeItem(I)}catch{}return null}return m};let g=!1;const p=a=>{try{const _=scrollY;scrollTo({top:a,left:0,behavior:"instant"}),i=a,l=!0,s(a);const m=scrollY;m!==_&&(t=!0),m!==a&&!g&&(g=!0,addEventListener("load",()=>{try{if(scrollY===m){const y=c();p(y!==null?y:i)}}catch{}},{once:!0}))}catch{}},o=()=>{try{return!!location.hash}catch{return!0}};let u=!1;const d=()=>{try{if(u||innerWidth>fe||innerHeight>de)return;u=!0;const a=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-a>me||n||o())return;const m=c();p(m!==null?m:i)};addEventListener("resize",_)}catch{}};let h=!1,b=!1;return{restore(){if(h||(h=!0,o()))return;const a=c();a!==null&&(p(a),d())},promoted(){if(b||(b=!0,o()))return;const a=c();a!==null?(p(a),d()):l&&p(i)}}}function he(e,t,n){const l=[...t.values()].filter(i=>i.targets.some(s=>s.startsWith(e+".")));return{wrap(i,s){const f=`${e}.${i}`,c=l.filter(g=>g.targets.includes(f));return c.length===0?(...g)=>{try{return s(...g)}catch(p){return Promise.reject(p)}}:(...g)=>{let p=g;for(const u of c){const d=u.module.parameters;if(d)try{p=d(p)}catch{return Promise.reject({code:"transform_error",id:u.id,scope:e,message:"parameters transform failed"})}}let o;try{o=s(...p)}catch(u){o=Promise.reject(u)}return o.then(u=>{for(let d=c.length-1;d>=0;d--){const h=c[d],b=h.module.returns;if(b)try{u=b(u)}catch{return n({id:h.id,scope:e,leg:"returns"}),u}}return u},u=>{for(let d=c.length-1;d>=0;d--){const h=c[d],b=h.module.throws;if(b)try{u=b(u)}catch{return n({id:h.id,scope:e,leg:"throws"}),Promise.reject(u)}}return Promise.reject(u)})}}}}function ge(e,t,n,l=()=>{}){const i=new Set(e.changes??[]),s=new Map;for(const f of i){const c=t[f];c&&s.set(f,c)}return{contract:e.contract,changes:i,flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:s,shellOrigin:n.shellOrigin,mount:n.mount,pipe:f=>he(f,s,l)}}(function(){const e=Object.defineProperty,t=globalThis,n=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let l=0;for(let i=0;i<n.length;i++){const s=n[i];try{e(t,s,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[s]}catch{}try{e(t,s,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[s]=="function"&&l++}if(l&&window!==top)try{parent.postMessage({__frame_rtc_lockdown_failed:l},"*")}catch{}})();const _e=1e4,ye=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function G(e){for(const t of ye)if(t.endsWith(":*"))try{const n=new URL(e);if(`${n.protocol}//${n.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}const R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),U=window.__FRAME_PREAMBLE?.transforms,z=window.__FRAME_PREAMBLE?.comments,$=window.__FRAME_PREAMBLE?.translate,T=/^[\w.-]+\.js$/,be=/^[a-z][a-z0-9_-]{0,63}$/;let V=null,j=null;function q(e,t,n){try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!0,enumerable:!0})}catch{}}}let B=!1;function X(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,B=!0):B&&(delete t.dataset.theme,t.style.colorScheme="",B=!1)}const A=Object.assign(Object.create(null),{mcp:Object.assign(Object.create(null),{watchTool:{handlerArg:3}})}),M=new Map;function Q(e,t){const n=M.get(e);if(!n)return;const l=Object.assign(Object.create(null),t);Object.assign(n.impl,l),n.impl.__settled=()=>Promise.reject({code:"capability_removed",message:`${e}: method not in this runtime`});const i=n.queue;n.queue=[];for(const s of i){const f=l[s.method];if(f)if(A[e]?.[s.method])try{s.resolve(f(...s.args))}catch{k(s,A[e][s.method].handlerArg,{code:"transform_error",message:`${e}.${s.method} rejected its arguments`})}else f(...s.args).then(s.resolve,s.reject);else{const c={code:"capability_removed",message:`${e}.${s.method} is not in this runtime`},g=A[e]?.[s.method];if(g){k(s,g.handlerArg,c);continue}s.reject(c)}}}function ve(e,t){const n=M.get(e);if(!n)return;n.impl.__settled=()=>Promise.reject(t);const l=n.queue;n.queue=[];for(const i of l){const s=A[e]?.[i.method];if(s){k(i,s.handlerArg,t);continue}i.reject(t)}}function N(e,t){const n=oe[e];if(!n){ve(e,t);return}Q(e,Object.fromEntries(Object.entries(n).map(([l,i])=>[l,()=>Promise.resolve(i)])))}function k(e,t,n){if(e.syncState?.dead)return;const l=e.args[t];typeof l=="function"&&queueMicrotask(()=>{if(!e.syncState?.dead)try{l({type:"error",error:n})}catch(i){se(i)}})}const F=Object.getOwnPropertyDescriptor(window,"claude");if(window!==top&&!(F&&F.writable===!1)){ce(),le();let e=null;try{e=pe()}catch{}const t=F?.value??{};q(window,"claude",t);const n=o=>{const u={impl:Object.create(null),queue:[]};M.set(o,u);const d=u.impl,h=new Proxy(d,{get:(b,a)=>{if(typeof a!="string"||a==="then"||a==="toJSON"||a==="valueOf")return;if(a==="toString")return Object.prototype.toString;const _=A[o]?.[a];return _?(...m)=>{if(typeof m[_.handlerArg]!="function")throw new TypeError(`${o}.${a} requires a handler function`);const y=d[a];if(y)return y(...m);if(d.__settled){const v={dead:!1},P={args:[...m],syncState:v};return d.__settled().catch(C=>k(P,_.handlerArg,C)),()=>{v.dead=!0}}let E=null;const S={dead:!1};return u.queue.push({method:a,args:m,resolve:v=>{E=typeof v=="function"?v:null,S.dead&&E?.()},reject:()=>{},syncState:S}),()=>{S.dead=!0,E?.()}}:(...m)=>{const y=d[a]??d.__settled;return y?y(...m):new Promise((E,S)=>{u.queue.push({method:a,args:m,resolve:E,reject:S})})}},set:()=>!1});q(t,o,h)};for(const o of Object.keys(R)){if(t[o]!==void 0){q(t,o,t[o]);continue}n(o)}let l=null,i=null,s=0;const f=o=>{o.source!==parent||!G(o.origin)||ne(o.data)&&(l=o.data.__frame_init,j=o.origin,removeEventListener("message",f),clearTimeout(s),i?.())};addEventListener("message",f),parent.postMessage({__frame_connect:!0},"*");const c=new Promise(o=>{i=o,s=setTimeout(()=>{removeEventListener("message",f),o()},_e)}),g=document.readyState==="loading"?new Promise(o=>document.addEventListener("DOMContentLoaded",()=>o(),{once:!0})):Promise.resolve();g.then(()=>{try{e?.restore()}catch{}});const p=o=>{if(!(o.source!==parent||!G(o.origin))&&W(o.data)){removeEventListener("message",p);try{e?.promoted()}catch{}}};addEventListener("message",p),c.then(async()=>{if(!l||!j){for(const r of M.keys())N(r,{code:"not_granted",message:"frame initialization did not arrive - capability unavailable"});return}X(l.theme);const o=j;let u=!1,d=!1;addEventListener("message",r=>{if(r.source!==parent||r.origin!==o)return;re(r.data)&&X(r.data.__frame_theme.theme);const w=r.data?.__fc_mode;w&&typeof w=="object"&&!u&&z&&T.test(z)&&(u=!0,h(z).then(H=>H.install?.(o,w.on===!0)).catch(()=>{}));const O=r.data?.__ft_cmd;O&&typeof O=="object"&&!d&&$&&T.test($)&&(d=!0,h($).then(H=>H.install?.(o,O)).catch(()=>{}))});const h=r=>ee(()=>import("/_runtime/"+r),void 0),b=Object.keys(l.capabilities??{});for(const r of b)Object.hasOwn(R,r)||be.test(r)&&t[r]===void 0&&(n(r),N(r,{code:"capability_disabled",message:"capability not in this runtime generation"}));const a=b.filter(r=>Object.hasOwn(R,r)).map(r=>[r,R[r]]).filter(r=>typeof r[1]=="string"&&T.test(r[1])),[_,...m]=await Promise.allSettled([U&&T.test(U)?h(U):Promise.resolve({}),...a.map(([,r])=>h(r))]),y=j;V=ge(l,_.status==="fulfilled"&&_.value?.TRANSFORMS||{},{shellOrigin:y,mount:Q},r=>parent.postMessage({__frame_cap_telemetry:r},y));const E=r=>parent.postMessage({__frame_cap_telemetry:{kind:"cap-load-error",cap:r}},y),S=V;m.forEach((r,w)=>{const O=a[w][0];if(r.status!=="fulfilled"){E(O);return}try{r.value?.install?.(S)}catch{E(O)}});for(const[r,w]of M)if(!(w.queue.length===0&&Object.keys(w.impl).length>0)){if(b.includes(r)){N(r,{code:"capability_disabled",message:"capability not available in this session"});continue}N(r,{code:"not_granted",message:"capability not available in this session"})}await g,parent.postMessage({__frame_ready:!0},j);let v=-1,P=0;const C=()=>{P=0;const r=Math.max(document.documentElement.scrollHeight,document.body?document.body.scrollHeight:0);r!==v&&(v=r,parent.postMessage({__frame_size:!0,h:r},y))},L=()=>{P||(P=setTimeout(C,200))},Z=new ResizeObserver(L);Z.observe(document.documentElement),document.body&&Z.observe(document.body),document.addEventListener("load",L,!0),document.fonts?.ready.then(L,()=>{}),addEventListener("beforeprint",()=>{v=-1,C()}),L(),addEventListener("message",r=>{if(!(r.source!==parent||r.origin!==y)&&W(r.data)){try{e?.promoted()}catch{}v=-1,L()}})})}})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>AI Fornelli — Mockup UI</title>
+<style>
+  :root{
+    --bg:#F7F4EF; --surface:#FFFFFF; --surface2:#EFEAE1; --ink:#242019; --muted:#6F6759;
+    --line:#E3DCD0; --accent:#2B5FD9; --on-accent:#FFFFFF; --accent-soft:#E7EDFB;
+    --flame:#DE8B12; --flame-soft:#FAF0DE;
+    --good:#2F9E63; --good-soft:#E3F2E9; --bad:#C94F3D; --bad-soft:#F8E7E3;
+    --font-ui:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --radius:14px; --shadow:0 10px 30px rgba(36,32,25,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#171512; --surface:#211E1A; --surface2:#2A2620; --ink:#EDE7DC; --muted:#9C9384;
+      --line:#37322A; --accent:#7FA1EF; --on-accent:#101726; --accent-soft:#26304A;
+      --flame:#E9A94E; --flame-soft:#3A2F1C;
+      --good:#5CBB8B; --good-soft:#1F3529; --bad:#E07A68; --bad-soft:#3E241F;
+      --shadow:0 10px 30px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F7F4EF; --surface:#FFFFFF; --surface2:#EFEAE1; --ink:#242019; --muted:#6F6759;
+    --line:#E3DCD0; --accent:#2B5FD9; --on-accent:#FFFFFF; --accent-soft:#E7EDFB;
+    --flame:#DE8B12; --flame-soft:#FAF0DE;
+    --good:#2F9E63; --good-soft:#E3F2E9; --bad:#C94F3D; --bad-soft:#F8E7E3;
+    --shadow:0 10px 30px rgba(36,32,25,.12);
+  }
+  :root[data-theme="dark"]{
+    --bg:#171512; --surface:#211E1A; --surface2:#2A2620; --ink:#EDE7DC; --muted:#9C9384;
+    --line:#37322A; --accent:#7FA1EF; --on-accent:#101726; --accent-soft:#26304A;
+    --flame:#E9A94E; --flame-soft:#3A2F1C;
+    --good:#5CBB8B; --good-soft:#1F3529; --bad:#E07A68; --bad-soft:#3E241F;
+    --shadow:0 10px 30px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-ui);line-height:1.45}
+  button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+  button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  input,select,textarea{font:inherit;color:inherit}
+
+  /* ── stage (chrome attorno al telefono) ── */
+  .stage{max-width:1260px;margin:0 auto;padding:28px 16px 48px;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .modes{display:flex;background:var(--surface2);border-radius:999px;padding:3px}
+  .modes button{border-radius:999px;padding:7px 16px;font-size:.85rem;font-weight:600;color:var(--muted)}
+  .modes button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .stage-head{text-align:center}
+  .stage-head h1{font-family:var(--font-display);font-size:1.7rem;margin:0;text-wrap:balance}
+  .stage-head h1 .flame{color:var(--accent)}
+  .stage-head p{color:var(--muted);margin:.35rem 0 0;font-size:.9rem}
+  .jump{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .jump button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:.85rem}
+  .jump button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+  /* ── telefono ── */
+  .phone{width:min(400px,100%);height:min(780px,88vh);min-height:560px;background:var(--surface);
+    border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;overflow:hidden;position:relative}
+  .viewport{flex:1;overflow-y:auto;overscroll-behavior:contain;background:var(--bg)}
+
+  .scr{display:none;padding:18px 16px 24px}
+  .scr.on{display:block}
+
+  .scr-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+  .scr-head h2{font-family:var(--font-display);font-size:1.45rem;margin:0}
+  .avatar{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    font-size:.85rem;font-weight:700;color:#fff;flex:none}
+  .av-p{background:#B5722A}.av-g{background:#3E6DB8}.av-s{background:#4E9A6E}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .stack{display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;align-items:center;gap:10px}
+  .grow{flex:1;min-width:0}
+  .muted{color:var(--muted)}
+  .small{font-size:.82rem}
+  .qty{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;
+    padding:10px 14px;font-weight:600;font-size:.92rem;border:1px solid var(--line);background:var(--surface)}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn-block{width:100%}
+  .btn-ghost{border-color:transparent;color:var(--accent)}
+
+  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:.75rem;font-weight:600}
+  .chip-warn{background:var(--flame-soft);color:var(--flame)}
+  .chip-good{background:var(--good-soft);color:var(--good)}
+  .chip-bad{background:var(--bad-soft);color:var(--bad)}
+  .chip-neutral{background:var(--surface2);color:var(--muted)}
+  .chip-accent{background:var(--accent-soft);color:var(--accent)}
+
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field select,.field textarea{background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:10px 12px;width:100%}
+
+  /* tab bar */
+  .tabbar{flex:none;display:flex;border-top:1px solid var(--line);background:var(--surface);padding:6px 4px calc(8px + env(safe-area-inset-bottom))}
+  .tabbar.hidden{display:none}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;border-radius:10px;
+    font-size:.68rem;font-weight:600;color:var(--muted)}
+  .tab .ico{font-size:1.15rem;line-height:1}
+  .tab.on{color:var(--accent)}
+
+  /* ── PIANO ── */
+  .weeknav{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px}
+  .weeknav button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface)}
+  .weeknav .wk{font-weight:700;font-size:.95rem}
+  .advice{display:flex;gap:10px;background:var(--flame-soft);border:1px solid transparent;border-radius:var(--radius);
+    padding:12px 14px;font-size:.88rem;margin-bottom:12px}
+  .advice b{color:var(--flame)}
+  .genbox{margin-bottom:14px}
+  .genbox input{margin-bottom:10px}
+  .day{margin-bottom:14px}
+  .day-lbl{display:flex;align-items:baseline;gap:8px;margin:0 2px 6px}
+  .day-lbl .dname{font-weight:700;font-size:.9rem}
+  .day-lbl .today{color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .meal{width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+  .meal + .meal{margin-top:8px}
+  .meal .slot{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .meal .dish{font-family:var(--font-display);font-size:1.02rem}
+  .meal .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  .meal.past{background:var(--surface2)}
+  .meal.out{border-style:dashed;color:var(--muted)}
+  .meal.out .dish{font-family:var(--font-ui);font-size:.95rem}
+
+  /* bottom sheet */
+  .sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.42);display:none;z-index:5}
+  .sheet-backdrop.on{display:block}
+  .sheet{position:absolute;left:0;right:0;bottom:0;z-index:6;background:var(--surface);
+    border-radius:20px 20px 0 0;padding:10px 16px 22px;transform:translateY(105%);transition:transform .22s ease}
+  .sheet.on{transform:translateY(0)}
+  @media (prefers-reduced-motion: reduce){.sheet{transition:none}}
+  .sheet .grab{width:38px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+  .sheet h3{font-family:var(--font-display);font-size:1.2rem;margin:0 0 2px}
+  .sheet .sub{color:var(--muted);font-size:.82rem;margin-bottom:12px}
+  .sheet-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+  .sheet-actions .btn{flex-direction:column;gap:4px;padding:10px 6px;font-size:.8rem}
+  .sheet-actions .ico{font-size:1.2rem}
+  .voterow{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+  .voterow .vname{flex:1;font-weight:600;font-size:.92rem}
+  .votebtn{width:38px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-size:1rem}
+  .votebtn.up.sel{background:var(--good-soft);border-color:var(--good)}
+  .votebtn.down.sel{background:var(--bad-soft);border-color:var(--bad)}
+  .consumed{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+  .seg{display:flex;background:var(--surface2);border-radius:10px;padding:3px;margin-top:8px}
+  .seg button{flex:1;border-radius:8px;padding:7px 4px;font-size:.82rem;font-weight:600;color:var(--muted)}
+  .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+
+  /* ── LISTA ── */
+  .progress{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;margin:6px 0 14px}
+  .progress i{display:block;height:100%;width:33%;background:var(--good)}
+  .shop{display:flex;align-items:center;gap:11px;padding:11px 4px;border-bottom:1px solid var(--line)}
+  .shop:last-child{border-bottom:none}
+  .shop .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);flex:none;display:flex;
+    align-items:center;justify-content:center;color:transparent;font-size:.8rem;background:var(--surface)}
+  .shop.done .box{background:var(--good);border-color:var(--good);color:#fff}
+  .shop.done .nm{text-decoration:line-through;color:var(--muted)}
+  .shop .nm{flex:1}
+  .addrow{display:flex;gap:8px;margin-top:12px}
+  .addrow input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+
+  /* ── DISPENSA ── */
+  .pantry{display:flex;align-items:center;gap:10px;padding:12px 4px;border-bottom:1px solid var(--line)}
+  .pantry:last-child{border-bottom:none}
+  .pantry .nm{flex:1}
+
+  /* ── CHAT ── */
+  .chat-scroll{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
+  .msg{max-width:85%;border-radius:16px;padding:10px 13px;font-size:.92rem}
+  .msg.user{align-self:flex-end;background:var(--accent);color:var(--on-accent);border-bottom-right-radius:5px}
+  .msg.ai{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:5px}
+  .toolchip{align-self:flex-start;display:flex;align-items:center;gap:7px;background:var(--surface2);
+    border:1px dashed var(--line);border-radius:10px;padding:6px 11px;font-size:.78rem;color:var(--muted)}
+  .toolchip b{color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem}
+  .caret{display:inline-block;width:2px;height:1em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){.caret{animation:none}}
+  .chat-input{display:flex;gap:8px;margin-top:12px}
+  .chat-input input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:11px 16px}
+  .chat-input .send{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:1.1rem;flex:none}
+
+  /* ── IMPOSTAZIONI ── */
+  .set-sec{margin-bottom:16px}
+  .set-sec h4{margin:0 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .member{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .member:last-child{border-bottom:none}
+  .testok{display:none;margin-top:8px}
+  .testok.on{display:inline-flex}
+
+  /* ── RICETTA ── */
+  .back{color:var(--accent);font-weight:600;font-size:.88rem;margin-bottom:10px;display:inline-flex;gap:5px}
+  .recipe-title{font-family:var(--font-display);font-size:1.5rem;margin:0 0 4px;text-wrap:balance}
+  .ing{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:.93rem}
+  .ing:last-child{border-bottom:none}
+  .steps{margin:0;padding-left:0;list-style:none;counter-reset:step}
+  .steps li{counter-increment:step;display:flex;gap:12px;padding:9px 0;font-size:.93rem}
+  .steps li::before{content:counter(step);flex:none;width:26px;height:26px;border-radius:50%;
+    background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.85rem;
+    display:inline-flex;align-items:center;justify-content:center}
+
+  /* ── WIZARD ── */
+  .stepper{display:flex;gap:6px;margin-bottom:16px}
+  .stepper i{flex:1;height:4px;border-radius:2px;background:var(--surface2)}
+  .stepper i.done{background:var(--accent)}
+  .wiz-title{font-family:var(--font-display);font-size:1.35rem;margin:0 0 2px;text-wrap:balance}
+  .wiz-sub{color:var(--muted);font-size:.88rem;margin:0 0 16px}
+  .choice{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);
+    border:1.5px solid var(--line);border-radius:var(--radius);padding:14px}
+  .choice.sel{border-color:var(--accent);background:var(--accent-soft)}
+  .choice .flag{font-size:1.4rem}
+  .wiz-nav{display:flex;gap:10px;margin-top:18px}
+  .slotmatrix{width:100%;border-collapse:collapse;font-size:.82rem}
+  .slotmatrix th{font-weight:600;color:var(--muted);padding:6px 2px;font-size:.75rem}
+  .slotmatrix td{text-align:center;padding:5px 2px}
+  .cellbox{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--surface);
+    display:inline-flex;align-items:center;justify-content:center;color:transparent;font-size:.7rem}
+  .cellbox.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .presets{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+  .presets button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.8rem;font-weight:600}
+  .presets button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .keystate{display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:10px}
+
+  /* ── DESKTOP MODE ── */
+  .phone.desktop{width:min(1180px,96vw);height:min(760px,88vh);border-radius:18px;flex-direction:row-reverse}
+  .phone.desktop .tabbar{flex-direction:column;justify-content:flex-start;gap:4px;width:196px;
+    border-top:none;border-right:1px solid var(--line);padding:18px 10px}
+  .phone.desktop .tab{flex:none;flex-direction:row;justify-content:flex-start;gap:10px;
+    padding:10px 12px;font-size:.9rem;border-radius:10px;width:100%}
+  .phone.desktop .tab.on{background:var(--accent-soft)}
+  .phone.desktop .brand{display:flex;align-items:center;gap:8px;font-family:var(--font-display);
+    font-size:1.15rem;padding:2px 12px 16px}
+  .brand{display:none}
+  .phone.desktop .scr{padding:26px 32px 32px}
+  .phone.desktop .scr-head h2{font-size:1.7rem}
+  .phone.desktop #scr-lista,.phone.desktop #scr-dispensa,
+  .phone.desktop #scr-impostazioni,.phone.desktop #scr-ricetta{max-width:640px;margin:0 auto}
+  .phone.desktop #scr-chat{max-width:680px;margin:0 auto;display:flex;flex-direction:column;min-height:100%}
+  .phone.desktop #scr-chat:not(.on){display:none}
+  .phone.desktop .chat-scroll{flex:1}
+  .phone.desktop .plan-top{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;margin-bottom:16px}
+  .phone.desktop .advice,.phone.desktop .genbox{margin-bottom:0}
+  .phone.desktop .week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;align-items:start}
+  .phone.desktop .day{margin-bottom:0}
+  .phone.desktop .day-lbl{flex-direction:column;align-items:flex-start;gap:0;min-height:36px}
+  .phone.desktop .meal{padding:9px 10px;min-height:96px}
+  .phone.desktop .meal .dish{font-size:.88rem;line-height:1.25}
+  .phone.desktop .meal .slot{font-size:.62rem}
+  .phone.desktop .meal .meta .chip{font-size:.66rem;padding:2px 7px}
+  .phone.desktop .sheet{left:50%;width:430px;max-width:92%;border-radius:20px 20px 0 0;
+    transform:translateX(-50%) translateY(105%)}
+  .phone.desktop .sheet.on{transform:translateX(-50%) translateY(0)}
+  @media (max-width:760px){.modes{display:none}}
+
+  /* ── PROFILO ── */
+  .who{display:flex;flex-direction:column;align-items:center;padding-top:60px;gap:20px}
+  .who h2{font-family:var(--font-display);font-size:1.6rem;margin:0}
+  .who .big-avatars{display:flex;gap:18px}
+  .bigav{display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:600}
+  .bigav .avatar{width:64px;height:64px;font-size:1.4rem}
+</style>
+
+<div class="stage">
+  <div class="stage-head">
+    <h1>🍳 AI Fornelli <span class="flame">·</span> Mockup UI</h1>
+    <p>Navigabile — dati finti, settimana 20–26 lug 2026 · oggi mer 22</p>
+  </div>
+  <div class="jump" role="tablist" aria-label="Schermate">
+    <button data-jump="setup1">Wizard /setup</button>
+    <button data-jump="profile">Chi sei?</button>
+    <button data-jump="piano" class="on">App · Piano</button>
+    <button data-jump="ricetta">Ricetta</button>
+  </div>
+  <div class="modes" role="tablist" aria-label="Dispositivo">
+    <button id="mode-mobile" class="on">📱 Mobile</button>
+    <button id="mode-desktop">🖥 Desktop</button>
+  </div>
+
+  <div class="phone">
+    <div class="viewport" id="viewport">
+
+      <!-- ══ WIZARD step 1: lingua ══ -->
+      <section class="scr" id="scr-setup1">
+        <div class="stepper"><i class="done"></i><i></i><i></i><i></i></div>
+        <h2 class="wiz-title">Benvenuto in AI Fornelli</h2>
+        <p class="wiz-sub">In che lingua vuoi l'app e i contenuti generati dall'AI?</p>
+        <div class="stack">
+          <button class="choice sel"><span class="flag">🇮🇹</span><span class="grow"><b>Italiano</b><br><span class="small muted">UI e piatti in italiano</span></span><span>✓</span></button>
+          <button class="choice"><span class="flag">🇬🇧</span><span class="grow"><b>English</b><br><span class="small muted">UI and dishes in English</span></span></button>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-primary btn-block" data-go="setup2">Continua</button>
+        </div>
+      </section>
+
+      <!-- ══ WIZARD step 2: membri ══ -->
+      <section class="scr" id="scr-setup2">
+        <div class="stepper"><i class="done"></i><i class="done"></i><i></i><i></i></div>
+        <h2 class="wiz-title">Chi mangia a casa?</h2>
+        <p class="wiz-sub">Vincoli e preferenze guidano l'AI; le porzioni scalano le dosi.</p>
+        <div class="stack">
+          <div class="card row">
+            <span class="avatar av-p">P</span>
+            <span class="grow"><b>Paolo</b><br><span class="small muted">Nessun vincolo · porzione 1×</span></span>
+            <button class="btn-ghost small">Modifica</button>
+          </div>
+          <div class="card row">
+            <span class="avatar av-g">G</span>
+            <span class="grow"><b>Giulia</b><br><span class="small muted">Niente pesce · porzione 1×</span></span>
+            <button class="btn-ghost small">Modifica</button>
+          </div>
+          <div class="card row">
+            <span class="avatar av-s">S</span>
+            <span class="grow"><b>Sofia</b><br><span class="small muted">No piccante, non ama i funghi · porzione 0,5×</span></span>
+            <button class="btn-ghost small">Modifica</button>
+          </div>
+          <button class="btn">+ Aggiungi membro</button>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn" data-go="setup1">Indietro</button>
+          <button class="btn btn-primary grow" data-go="setup3">Continua</button>
+        </div>
+      </section>
+
+      <!-- ══ WIZARD step 3: slot ══ -->
+      <section class="scr" id="scr-setup3">
+        <div class="stepper"><i class="done"></i><i class="done"></i><i class="done"></i><i></i></div>
+        <h2 class="wiz-title">Quali pasti pianifichiamo?</h2>
+        <p class="wiz-sub">Scegli un preset o personalizza la griglia.</p>
+        <div class="presets">
+          <button>Solo cene</button>
+          <button class="on">Cene + weekend completo</button>
+          <button>Tutti i pasti</button>
+        </div>
+        <div class="card">
+          <table class="slotmatrix">
+            <tr><th></th><th>L</th><th>M</th><th>M</th><th>G</th><th>V</th><th>S</th><th>D</th></tr>
+            <tr>
+              <th style="text-align:left">Pranzo</th>
+              <td><span class="cellbox"></span></td><td><span class="cellbox"></span></td><td><span class="cellbox"></span></td>
+              <td><span class="cellbox"></span></td><td><span class="cellbox"></span></td>
+              <td><span class="cellbox on">✓</span></td><td><span class="cellbox on">✓</span></td>
+            </tr>
+            <tr>
+              <th style="text-align:left">Cena</th>
+              <td><span class="cellbox on">✓</span></td><td><span class="cellbox on">✓</span></td><td><span class="cellbox on">✓</span></td>
+              <td><span class="cellbox on">✓</span></td><td><span class="cellbox on">✓</span></td>
+              <td><span class="cellbox on">✓</span></td><td><span class="cellbox on">✓</span></td>
+            </tr>
+          </table>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn" data-go="setup2">Indietro</button>
+          <button class="btn btn-primary grow" data-go="setup4">Continua</button>
+        </div>
+      </section>
+
+      <!-- ══ WIZARD step 4: AI ══ -->
+      <section class="scr" id="scr-setup4">
+        <div class="stepper"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i></div>
+        <h2 class="wiz-title">Cervello in cucina</h2>
+        <p class="wiz-sub">L'AI passa da OpenRouter; la chiave sta nel <code>.env</code> del server.</p>
+        <div class="keystate"><span class="chip chip-good">✓ OPENROUTER_API_KEY trovata</span></div>
+        <div class="stack">
+          <div class="field">
+            <label for="wiz-model">Modello</label>
+            <select id="wiz-model">
+              <option selected>google/gemini-2.5-flash — economico (default)</option>
+              <option>anthropic/claude-sonnet-5</option>
+              <option>openai/gpt-5-mini</option>
+              <option>Altro (override libero)…</option>
+            </select>
+          </div>
+          <button class="btn" id="wiz-test">Prova la connessione</button>
+          <span class="chip chip-good testok" id="wiz-testok">✓ Risposta ok · 312 ms</span>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn" data-go="setup3">Indietro</button>
+          <button class="btn btn-primary grow" data-go="profile">Fine → al piano</button>
+        </div>
+      </section>
+
+      <!-- ══ SELETTORE PROFILO ══ -->
+      <section class="scr" id="scr-profile">
+        <div class="who">
+          <h2>Chi sei?</h2>
+          <p class="muted small" style="margin:0">Serve solo per attribuire voti e azioni</p>
+          <div class="big-avatars">
+            <button class="bigav" data-go="piano"><span class="avatar av-p">P</span>Paolo</button>
+            <button class="bigav" data-go="piano"><span class="avatar av-g">G</span>Giulia</button>
+            <button class="bigav" data-go="piano"><span class="avatar av-s">S</span>Sofia</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PIANO ══ -->
+      <section class="scr" id="scr-piano">
+        <div class="scr-head">
+          <h2>Piano</h2>
+          <button class="avatar av-p" title="Cambia profilo" data-go="profile">P</button>
+        </div>
+        <div class="weeknav">
+          <button aria-label="Settimana precedente">‹</button>
+          <span class="wk">20 – 26 luglio</span>
+          <button aria-label="Settimana successiva">›</button>
+        </div>
+        <div class="plan-top">
+          <div class="advice"><span>💡</span><span><b>Consiglio del giorno.</b> Il branzino di giovedì è in freezer: mettilo in frigo stasera.</span></div>
+          <div class="card genbox">
+            <div class="field">
+              <label for="vincoli">Vincoli per questa settimana</label>
+              <input id="vincoli" value="martedì cena fuori, venerdì pizza">
+            </div>
+            <button class="btn btn-primary btn-block">✨ Genera settimana</button>
+          </div>
+        </div>
+
+        <div class="week">
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Lunedì 20</span></div>
+          <button class="meal past" data-sheet="past">
+            <span class="slot">Cena · consumato</span>
+            <span class="dish">Frittata di zucchine e patate</span>
+            <span class="meta"><span class="chip chip-neutral">al posto di: Risotto ai porcini</span></span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Martedì 21</span></div>
+          <button class="meal past out">
+            <span class="slot">Cena</span>
+            <span class="dish">Fuori casa 🍽</span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Mercoledì 22</span><span class="today">Oggi</span></div>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Cena</span>
+            <span class="dish">Orecchiette alle cime di rapa</span>
+            <span class="meta"><span class="chip chip-good">👍 2</span><span class="chip chip-accent">dispensa: cime di rapa</span></span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Giovedì 23</span></div>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Cena</span>
+            <span class="dish">Branzino al forno con patate</span>
+            <span class="meta"><span class="chip chip-neutral">solo per: Paolo, Sofia</span></span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Venerdì 24</span></div>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Cena</span>
+            <span class="dish">Pizza fatta in casa</span>
+            <span class="meta"><span class="chip chip-good">👍 3</span></span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Sabato 25</span></div>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Pranzo</span>
+            <span class="dish">Insalata di farro con feta</span>
+          </button>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Cena</span>
+            <span class="dish">Pollo al limone con rosmarino</span>
+            <span class="meta"><span class="chip chip-good">👍 1</span></span>
+          </button>
+        </div>
+        <div class="day">
+          <div class="day-lbl"><span class="dname">Domenica 26</span></div>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Pranzo</span>
+            <span class="dish">Lasagne della domenica</span>
+            <span class="meta"><span class="chip chip-good">👍 3</span></span>
+          </button>
+          <button class="meal" data-sheet="today">
+            <span class="slot">Cena</span>
+            <span class="dish">Vellutata di zucchine e basilico</span>
+          </button>
+        </div>
+        </div>
+      </section>
+
+      <!-- ══ LISTA ══ -->
+      <section class="scr" id="scr-lista">
+        <div class="scr-head">
+          <h2>Lista della spesa</h2>
+          <span class="chip chip-neutral">20–26 lug</span>
+        </div>
+        <p class="small muted" style="margin:0 2px 4px"><span id="shopcount">4</span>/12 presi · la dispensa è già sottratta</p>
+        <div class="progress"><i id="shopbar"></i></div>
+        <div class="card">
+          <div class="shop done"><span class="box">✓</span><span class="nm">Orecchiette</span><span class="qty muted">500 g</span></div>
+          <div class="shop done"><span class="box">✓</span><span class="nm">Cime di rapa</span><span class="qty muted">1 kg</span></div>
+          <div class="shop done"><span class="box">✓</span><span class="nm">Acciughe sott'olio</span><span class="qty muted">1 pz</span></div>
+          <div class="shop done"><span class="box">✓</span><span class="nm">Limoni</span><span class="qty muted">3 pz</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Branzino</span><span class="qty muted">2 pz</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Patate</span><span class="qty muted">1,2 kg</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Mozzarella</span><span class="qty muted">250 g</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Farina 00</span><span class="qty muted">500 g</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Farro</span><span class="qty muted">300 g</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Feta</span><span class="qty muted">150 g</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Basilico</span><span class="qty muted">qb</span></div>
+          <div class="shop"><span class="box">✓</span><span class="nm">Caffè <span class="chip chip-neutral">manuale</span></span><span class="qty muted">1 pz</span></div>
+        </div>
+        <div class="addrow">
+          <input placeholder="Aggiungi qualcosa…" aria-label="Aggiungi voce manuale">
+          <button class="btn btn-primary">+</button>
+        </div>
+      </section>
+
+      <!-- ══ DISPENSA ══ -->
+      <section class="scr" id="scr-dispensa">
+        <div class="scr-head">
+          <h2>Dispensa</h2>
+          <button class="btn small">+ Aggiungi</button>
+        </div>
+        <div class="card">
+          <div class="pantry"><span class="nm">Zucchine <span class="qty muted">600 g</span></span><span class="chip chip-warn">scade oggi</span></div>
+          <div class="pantry"><span class="nm">Passata di pomodoro <span class="qty muted">700 g</span></span><span class="chip chip-warn">scad. 28 lug</span></div>
+          <div class="pantry"><span class="nm">Uova <span class="qty muted">6 pz</span></span><span class="chip chip-neutral">scad. 2 ago</span></div>
+          <div class="pantry"><span class="nm">Cime di rapa <span class="qty muted">400 g</span></span><span class="chip chip-neutral">scad. 24 lug</span></div>
+          <div class="pantry"><span class="nm">Farro <span class="qty muted">500 g</span></span><span class="chip chip-neutral">apr 2027</span></div>
+          <div class="pantry"><span class="nm">Yogurt greco <span class="qty muted">2 pz</span></span><span class="chip chip-bad">scaduto ieri</span></div>
+        </div>
+        <p class="small muted" style="margin:10px 2px 0">L'AI privilegia gli ingredienti in scadenza quando genera il piano.</p>
+      </section>
+
+      <!-- ══ CHAT ══ -->
+      <section class="scr" id="scr-chat">
+        <div class="scr-head">
+          <h2>Chat</h2>
+          <span class="avatar av-p">P</span>
+        </div>
+        <div class="chat-scroll">
+          <div class="msg user">Giovedì siamo solo io e Sofia, e a Sofia i funghi non piacciono proprio</div>
+          <div class="toolchip">🔧 <b>persist_preference</b> Sofia: non ama i funghi ✓</div>
+          <div class="toolchip">🔧 <b>update_meal</b> gio 23 · Cena → solo Paolo, Sofia ✓</div>
+          <div class="msg ai">Segnato! Ho tolto i funghi dalle preferenze di Sofia e messo la cena di giovedì per voi due. Il branzino al forno va bene per entrambi 🐟</div>
+          <div class="msg user">Sostituisci la cena di domenica con qualcosa di più fresco</div>
+          <div class="toolchip">🔧 <b>regenerate_meal</b> dom 26 · Cena…</div>
+          <div class="msg ai">Con questo caldo direi vellutata fredda di zucchine e basilico — usa anche le zucchine che scadono oggi<span class="caret"></span></div>
+        </div>
+        <div class="chat-input">
+          <input placeholder="Scrivi al cuoco…" aria-label="Messaggio">
+          <button class="send" aria-label="Invia">➤</button>
+        </div>
+      </section>
+
+      <!-- ══ IMPOSTAZIONI ══ -->
+      <section class="scr" id="scr-impostazioni">
+        <div class="scr-head"><h2>Impostazioni</h2></div>
+        <div class="set-sec">
+          <h4>Lingua</h4>
+          <div class="card row">
+            <span class="grow">Lingua di app e contenuti AI</span>
+            <select aria-label="Lingua"><option selected>Italiano</option><option>English</option></select>
+          </div>
+          <p class="small muted" style="margin:6px 2px 0">Cambiare lingua non traduce i piatti già salvati.</p>
+        </div>
+        <div class="set-sec">
+          <h4>Modello AI</h4>
+          <div class="card stack">
+            <div class="field">
+              <label for="set-model">Modello OpenRouter</label>
+              <select id="set-model">
+                <option selected>google/gemini-2.5-flash — economico (default)</option>
+                <option>anthropic/claude-sonnet-5</option>
+                <option>openai/gpt-5-mini</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="set-override">Override libero</label>
+              <input id="set-override" placeholder="es. mistralai/mistral-large">
+            </div>
+            <button class="btn" id="set-test">Prova la connessione</button>
+            <span class="chip chip-good testok" id="set-testok">✓ Risposta ok · 312 ms</span>
+          </div>
+        </div>
+        <div class="set-sec">
+          <h4>Settimana</h4>
+          <div class="card row">
+            <span class="grow">Inizio settimana</span>
+            <select aria-label="Inizio settimana"><option selected>Lunedì</option><option>Domenica</option></select>
+          </div>
+        </div>
+        <div class="set-sec">
+          <h4>Membri e pasti</h4>
+          <div class="card">
+            <div class="member"><span class="avatar av-p">P</span><span class="grow">Paolo</span><button class="btn-ghost small">Modifica</button></div>
+            <div class="member"><span class="avatar av-g">G</span><span class="grow">Giulia</span><button class="btn-ghost small">Modifica</button></div>
+            <div class="member"><span class="avatar av-s">S</span><span class="grow">Sofia</span><button class="btn-ghost small">Modifica</button></div>
+            <div class="member"><span class="grow muted small">Slot pasti: cene + weekend completo</span><button class="btn-ghost small">Modifica</button></div>
+          </div>
+        </div>
+        <p class="small muted" style="text-align:center">AI Fornelli v0.1 · mockup</p>
+      </section>
+
+      <!-- ══ RICETTA ══ -->
+      <section class="scr" id="scr-ricetta">
+        <button class="back" data-go="piano">‹ Piano</button>
+        <h2 class="recipe-title">Orecchiette alle cime di rapa</h2>
+        <p class="small muted" style="margin:0 0 14px">Mer 22 lug · Cena · 3 porzioni <span class="chip chip-accent">AI</span></p>
+        <div class="set-sec">
+          <h4>Ingredienti</h4>
+          <div class="card">
+            <div class="ing"><span>Orecchiette</span><span class="qty">350 g</span></div>
+            <div class="ing"><span>Cime di rapa</span><span class="qty">800 g</span></div>
+            <div class="ing"><span>Acciughe sott'olio</span><span class="qty">4 pz</span></div>
+            <div class="ing"><span>Aglio</span><span class="qty">1 pz</span></div>
+            <div class="ing"><span>Olio extravergine</span><span class="qty">3 cucchiai</span></div>
+            <div class="ing"><span>Peperoncino</span><span class="qty">qb</span></div>
+          </div>
+        </div>
+        <div class="set-sec">
+          <h4>Procedimento</h4>
+          <div class="card">
+            <ol class="steps">
+              <li>Monda le cime di rapa e lessale 5 minuti in abbondante acqua salata.</li>
+              <li>Nella stessa acqua butta le orecchiette e cuocile al dente.</li>
+              <li>In padella scalda l'olio con aglio, peperoncino e acciughe finché si sciolgono.</li>
+              <li>Salta orecchiette e cime in padella un paio di minuti con un mestolo d'acqua di cottura.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <b>Vi è piaciuto?</b><span class="small muted">i voti guidano l'AI</span>
+          </div>
+          <div class="voterow"><span class="avatar av-p">P</span><span class="vname">Paolo</span><button class="votebtn up sel">👍</button><button class="votebtn down">👎</button></div>
+          <div class="voterow"><span class="avatar av-g">G</span><span class="vname">Giulia</span><button class="votebtn up sel">👍</button><button class="votebtn down">👎</button></div>
+          <div class="voterow"><span class="avatar av-s">S</span><span class="vname">Sofia</span><button class="votebtn up">👍</button><button class="votebtn down">👎</button></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- sheet pasto -->
+    <div class="sheet-backdrop" id="backdrop"></div>
+    <div class="sheet" id="sheet">
+      <div class="grab"></div>
+      <h3 id="sheet-title">Orecchiette alle cime di rapa</h3>
+      <p class="sub" id="sheet-sub">Mercoledì 22 · Cena</p>
+      <div class="sheet-actions">
+        <button class="btn" data-go="ricetta"><span class="ico">📖</span>Ricetta</button>
+        <button class="btn"><span class="ico">✏️</span>Modifica</button>
+        <button class="btn"><span class="ico">🔄</span>Rigenera</button>
+      </div>
+      <div class="voterow"><span class="avatar av-p">P</span><span class="vname">Paolo</span><button class="votebtn up sel">👍</button><button class="votebtn down">👎</button></div>
+      <div class="voterow"><span class="avatar av-g">G</span><span class="vname">Giulia</span><button class="votebtn up sel">👍</button><button class="votebtn down">👎</button></div>
+      <div class="voterow"><span class="avatar av-s">S</span><span class="vname">Sofia</span><button class="votebtn up">👍</button><button class="votebtn down">👎</button></div>
+      <div class="consumed" id="sheet-consumed" hidden>
+        <b class="small">Cosa avete mangiato davvero?</b>
+        <div class="seg">
+          <button>Come pianificato</button>
+          <button class="on">Altro piatto: Frittata</button>
+          <button>Fuori casa</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- tab bar -->
+    <nav class="tabbar" id="tabbar">
+      <div class="brand">🍳 AI Fornelli</div>
+      <button class="tab on" data-tab="piano"><span class="ico">🗓</span>Piano</button>
+      <button class="tab" data-tab="lista"><span class="ico">🛒</span>Lista</button>
+      <button class="tab" data-tab="dispensa"><span class="ico">🥫</span>Dispensa</button>
+      <button class="tab" data-tab="chat"><span class="ico">💬</span>Chat</button>
+      <button class="tab" data-tab="impostazioni"><span class="ico">⚙️</span>Impostazioni</button>
+    </nav>
+  </div>
+
+  <p class="small muted" style="max-width:520px;text-align:center">
+    Wizard e "Chi sei?" nascondono la tab bar, come nell'app reale (redirect forzato finché il setup non è completo).
+    Tap su una cella del piano per lo sheet Ricetta / Modifica / Rigenera / Voti; le celle passate mostrano il toggle
+    pianificato / consumato. In modalità 🖥 Desktop la tab bar diventa una sidebar e il piano si apre in griglia
+    settimanale a 7 colonne — stesso codice, solo CSS responsive (breakpoint ~768px).
+  </p>
+</div>
+
+<script>
+  const APP_TABS = ['piano','lista','dispensa','chat','impostazioni'];
+  const viewport = document.getElementById('viewport');
+  const tabbar = document.getElementById('tabbar');
+  const sheet = document.getElementById('sheet');
+  const backdrop = document.getElementById('backdrop');
+
+  function show(name){
+    document.querySelectorAll('.scr').forEach(s => s.classList.toggle('on', s.id === 'scr-' + name));
+    const isApp = APP_TABS.includes(name);
+    tabbar.classList.toggle('hidden', !isApp);
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.tab === name));
+    document.querySelectorAll('.jump button').forEach(b => {
+      b.classList.toggle('on', b.dataset.jump === name || (b.dataset.jump === 'piano' && isApp));
+    });
+    closeSheet();
+    viewport.scrollTop = 0;
+  }
+  function openSheet(kind){
+    if(kind === 'past'){
+      document.getElementById('sheet-title').textContent = 'Risotto ai porcini';
+      document.getElementById('sheet-sub').textContent = 'Lunedì 20 · Cena · pianificato';
+      document.getElementById('sheet-consumed').hidden = false;
+    } else {
+      document.getElementById('sheet-title').textContent = 'Orecchiette alle cime di rapa';
+      document.getElementById('sheet-sub').textContent = 'Mercoledì 22 · Cena';
+      document.getElementById('sheet-consumed').hidden = true;
+    }
+    sheet.classList.add('on'); backdrop.classList.add('on');
+  }
+  function closeSheet(){ sheet.classList.remove('on'); backdrop.classList.remove('on'); }
+
+  document.addEventListener('click', e => {
+    const go = e.target.closest('[data-go]');
+    if(go){ show(go.dataset.go); return; }
+    const jump = e.target.closest('[data-jump]');
+    if(jump){ show(jump.dataset.jump); return; }
+    const tab = e.target.closest('[data-tab]');
+    if(tab){ show(tab.dataset.tab); return; }
+    const meal = e.target.closest('[data-sheet]');
+    if(meal){ openSheet(meal.dataset.sheet); return; }
+    if(e.target === backdrop){ closeSheet(); return; }
+
+    const vote = e.target.closest('.votebtn');
+    if(vote){
+      const row = vote.parentElement;
+      const wasSel = vote.classList.contains('sel');
+      row.querySelectorAll('.votebtn').forEach(b => b.classList.remove('sel'));
+      if(!wasSel) vote.classList.add('sel');
+      return;
+    }
+    const shopItem = e.target.closest('.shop');
+    if(shopItem){
+      shopItem.classList.toggle('done');
+      const done = document.querySelectorAll('.shop.done').length;
+      const total = document.querySelectorAll('.shop').length;
+      document.getElementById('shopcount').textContent = done;
+      document.getElementById('shopbar').style.width = (done / total * 100) + '%';
+      return;
+    }
+    const choice = e.target.closest('.choice');
+    if(choice){
+      choice.parentElement.querySelectorAll('.choice').forEach(c => c.classList.remove('sel'));
+      choice.classList.add('sel');
+      return;
+    }
+    const preset = e.target.closest('.presets button');
+    if(preset){
+      preset.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+      preset.classList.add('on');
+      return;
+    }
+    const seg = e.target.closest('.seg button');
+    if(seg){
+      seg.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+      seg.classList.add('on');
+      return;
+    }
+    if(e.target.closest('#wiz-test')) document.getElementById('wiz-testok').classList.add('on');
+    if(e.target.closest('#set-test')) document.getElementById('set-testok').classList.add('on');
+  });
+
+  const phone = document.querySelector('.phone');
+  const modeMobile = document.getElementById('mode-mobile');
+  const modeDesktop = document.getElementById('mode-desktop');
+  modeMobile.addEventListener('click', () => {
+    phone.classList.remove('desktop');
+    modeMobile.classList.add('on'); modeDesktop.classList.remove('on');
+  });
+  modeDesktop.addEventListener('click', () => {
+    phone.classList.add('desktop');
+    modeDesktop.classList.add('on'); modeMobile.classList.remove('on');
+  });
+
+  show('piano');
+</script>
+
+</body></html>
