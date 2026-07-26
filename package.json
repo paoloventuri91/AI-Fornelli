@@ -12,6 +12,8 @@
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
+    "@openrouter/ai-sdk-provider": "^3.0.0",
+    "ai": "^7.0.37",
     "better-sqlite3": "^12.11.1",
     "drizzle-orm": "^0.45.2",
     "next": "15.5.21",

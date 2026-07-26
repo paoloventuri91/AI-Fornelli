@@ -11,6 +11,9 @@ import {
   setMealEatingOut,
   setPlannedDish,
 } from '@/server/services/planning';
+import { listMealSlots } from '@/server/services/mealSlots';
+import { generatePlan } from '@/server/ai/generatePlan';
+import { AiError, type AiErrorCode } from '@/server/ai/errors';
 
 const dishSchema = z.object({
   title: z.string().trim().min(1),
@@ -77,4 +80,29 @@ export async function consumeNewDishAction(mealId: number, input: unknown) {
   setActualDish(db, z.number().int().parse(mealId), dish.id);
   revalidatePath('/');
   return dish;
+}
+
+export type GeneratePlanActionResult =
+  | { ok: true; filled: number }
+  | { ok: false; code: AiErrorCode };
+
+// Genera con l'AI le celle vuote della settimana. Non solleva: mappa l'errore a un codice.
+export async function generatePlanAction(
+  weekStart: string,
+  freeConstraints: string,
+): Promise<GeneratePlanActionResult> {
+  const ws = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).parse(weekStart);
+  const db = getDb();
+  const slots = listMealSlots(db);
+  try {
+    const r = await generatePlan(db, {
+      weekStart: ws,
+      slots,
+      freeConstraints: z.string().parse(freeConstraints),
+    });
+    revalidatePath('/');
+    return { ok: true, filled: r.filled };
+  } catch (e) {
+    return { ok: false, code: e instanceof AiError ? e.code : 'upstream' };
+  }
 }

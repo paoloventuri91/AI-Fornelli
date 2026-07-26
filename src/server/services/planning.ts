@@ -163,6 +163,30 @@ export function setConstraints(db: Db, weekStart: string, text: string): void {
     .run();
 }
 
+// Titoli dei piatti consumati (COALESCE actual/planned) prima di una certa settimana,
+// dal più recente. Serve al contesto AI per l'anti-ripetizione.
+export function recentConsumedTitles(
+  db: Db,
+  beforeWeekStart: string,
+  limit = 40,
+): string[] {
+  const rows = db
+    .select()
+    .from(meals)
+    .all()
+    .filter((m) => m.date < beforeWeekStart)
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, limit);
+  const titles: string[] = [];
+  for (const m of rows) {
+    const id = m.actualDishId ?? m.plannedDishId;
+    if (!id) continue;
+    const dish = getDish(db, id);
+    if (dish) titles.push(dish.title);
+  }
+  return titles;
+}
+
 // Singolo pasto (per lo sheet). Restituisce null se non appartiene alla settimana.
 export function getMeal(db: Db, mealId: number): MealView | null {
   const m = db.select().from(meals).where(eq(meals.id, mealId)).get();

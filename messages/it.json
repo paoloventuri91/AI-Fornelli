@@ -72,7 +72,14 @@
     "consumedAsPlanned": "Come pianificato",
     "consumedOther": "Ho mangiato altro",
     "clear": "Svuota cella",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "generateWeek": "✨ Genera settimana",
+    "generating": "Genero…",
+    "errNoKey": "Chiave OpenRouter mancante: aggiungila nel .env del server.",
+    "errTimeout": "Il modello non ha risposto in tempo, riprova.",
+    "errUpstream": "Errore del servizio AI, riprova più tardi.",
+    "errInvalid": "L'AI non ha prodotto un piano valido, riprova.",
+    "filledToast": "Generate {n} ricette"
   },
   "dish": {
     "newTitle": "Nuova ricetta",

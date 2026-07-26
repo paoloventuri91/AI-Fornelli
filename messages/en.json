@@ -72,7 +72,14 @@
     "consumedAsPlanned": "As planned",
     "consumedOther": "I ate something else",
     "clear": "Clear cell",
-    "close": "Close"
+    "close": "Close",
+    "generateWeek": "✨ Generate week",
+    "generating": "Generating…",
+    "errNoKey": "OpenRouter key missing: add it to the server .env.",
+    "errTimeout": "The model did not respond in time, try again.",
+    "errUpstream": "AI service error, try again later.",
+    "errInvalid": "The AI did not produce a valid plan, try again.",
+    "filledToast": "Generated {n} recipes"
   },
   "dish": {
     "newTitle": "New recipe",

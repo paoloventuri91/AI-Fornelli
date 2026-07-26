@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -15,10 +16,12 @@ import {
   clearPlannedDishAction,
   consumeNewDishAction,
   editDishAction,
+  generatePlanAction,
   saveConstraintsAction,
   setConsumedAction,
   setEatingOutAction,
 } from '@/server/planning-actions';
+import type { AiErrorCode } from '@/server/ai/errors';
 
 type Props = {
   weekStart: string;
@@ -49,11 +52,14 @@ export function PlanClient({
   const t = useTranslations('plan');
   const tc = useTranslations('common');
   const locale = useLocale();
+  const router = useRouter();
   const [pending, start] = useTransition();
 
   const [constraints, setConstraints] = useState(constraintsText);
   const [openMealId, setOpenMealId] = useState<number | null>(null);
   const [mode, setMode] = useState<SheetMode>('actions');
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState<AiErrorCode | null>(null);
 
   const openMeal = meals.find((m) => m.id === openMealId) ?? null;
 
@@ -79,6 +85,17 @@ export function PlanClient({
   function saveConstraints() {
     if (constraints !== constraintsText)
       start(() => saveConstraintsAction(weekStart, constraints));
+  }
+  async function generateWeek() {
+    setGenError(null);
+    setGenerating(true);
+    try {
+      const res = await generatePlanAction(weekStart, constraints);
+      if (res.ok) router.refresh();
+      else setGenError(res.code);
+    } finally {
+      setGenerating(false);
+    }
   }
   function toggleEatingOut(m: MealView) {
     start(async () => {
@@ -142,8 +159,8 @@ export function PlanClient({
         </Link>
       </div>
 
-      {/* Vincoli settimana */}
-      <Card className="mb-4">
+      {/* Vincoli settimana + generazione AI */}
+      <Card className="mb-4 flex flex-col gap-2.5">
         <Field label={t('constraintsLabel')} htmlFor="constraints">
           <Input
             id="constraints"
@@ -153,6 +170,25 @@ export function PlanClient({
             placeholder={t('constraintsPlaceholder')}
           />
         </Field>
+        <Button
+          variant="primary"
+          block
+          onClick={generateWeek}
+          disabled={generating}
+        >
+          {generating ? t('generating') : t('generateWeek')}
+        </Button>
+        {genError && (
+          <p className="text-[0.85rem] text-bad">
+            {genError === 'no_key'
+              ? t('errNoKey')
+              : genError === 'timeout'
+                ? t('errTimeout')
+                : genError === 'invalid_output'
+                  ? t('errInvalid')
+                  : t('errUpstream')}
+          </p>
+        )}
       </Card>
 
       {/* Griglia giorni × slot */}

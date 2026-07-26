@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildPlanContext > is a stable snapshot for a known input 1`] = `
+"Sei un assistente di cucina che pianifica il menu settimanale di una famiglia. Rispondi SOLO con ricette nella lingua italiana.
+
+## Membri della famiglia (2)
+- Paolo: nessun vincolo · preferenze: ama la pasta · porzione 1×
+- Sofia: no piccante · porzione 0.5×
+
+## Slot pasto pianificati
+Cena
+
+## Piatti recenti (NON ripeterli)
+Lasagne, Risotto ai funghi
+
+## Vincoli dell'utente per questa settimana
+martedì cena fuori
+
+## Genera una ricetta completa (ingredienti dosati con unità tra g/kg/ml/l/pz/cucchiai/qb, e procedimento passo-passo) per ESATTAMENTE queste celle:
+- 2026-07-20 · Cena
+- 2026-07-21 · Cena
+
+Rispetta i vincoli alimentari di ogni membro. Varia i piatti, evita ripetizioni con lo storico, privilegia stagionalità. Le porzioni base tengano conto del numero di persone."
+`;
