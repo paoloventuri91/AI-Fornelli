@@ -1,0 +1,39 @@
+# AI Fornelli — assistente AI per il menu settimanale (Next.js + SQLite).
+# Immagine pullata da GHCR (build & push via GitHub Actions nel repo ai-fornelli).
+# Sostituisce il vecchio menu-assistant SENZA migrazione dati.
+#
+# Deploy:
+#   1) copia questo file in docker-local-infrastructure/ai-fornelli.yml
+#   2) ferma il vecchio servizio:   docker compose -f menu-assistant.yml down
+#   3) avvia il nuovo:              docker compose -f ai-fornelli.yml up -d
+#   4) nel tunnel Cloudflare punta la route dell'hostname a
+#        http://host.docker.internal:8095
+#      (Cloudflare Access invariato; eventualmente rinomina l'hostname)
+#   5) quando tutto è verificato, ritira menu-assistant.yml
+#
+# Variabili richieste nel .env di root: OPENROUTER_API_KEY (obbligatoria).
+services:
+  ai-fornelli:
+    image: ghcr.io/paoloventuri91/ai-fornelli:main
+    container_name: ai-fornelli
+    restart: unless-stopped
+    ports:
+      - "8095:3000" # stessa porta del vecchio menu-assistant (fermalo prima)
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      DB_PATH: /data/ai-fornelli.db
+    volumes:
+      - ai_fornelli_data:/data
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+volumes:
+  ai_fornelli_data:
