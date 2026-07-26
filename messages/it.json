@@ -106,6 +106,13 @@
     "likePrompt": "Vi è piaciuto?",
     "votesHint": "i voti guidano l'AI"
   },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Scrivi al cuoco…",
+    "send": "Invia",
+    "empty": "Chiedimi di modificare il piano, salvare una preferenza o aggiungere qualcosa in dispensa.",
+    "errNoKey": "Chiave OpenRouter mancante: aggiungila nel .env del server."
+  },
   "pantry": {
     "title": "Dispensa",
     "add": "Aggiungi",

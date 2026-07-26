@@ -2,10 +2,12 @@ import type { Db } from '@/server/db';
 import { getSettings } from '@/server/services/settings';
 import { listProfiles } from '@/server/services/profiles';
 import {
+  getMeal,
   getWeek,
   recentConsumedTitles,
   setConstraints,
   setPlannedDish,
+  weekStartFor,
   type SlotConfig,
 } from '@/server/services/planning';
 import { createDish } from '@/server/services/dishes';
@@ -125,6 +127,69 @@ export async function generatePlan(
     'invalid_output',
     `Il modello non ha prodotto un piano valido dopo ${maxRetries + 1} tentativi (${lastIssue})`,
   );
+}
+
+// Rigenera con l'AI il piatto di una singola cella, col contesto del resto della settimana.
+export async function regenerateMeal(
+  db: Db,
+  mealId: number,
+  opts: { generator?: PlanGenerator; maxRetries?: number } = {},
+): Promise<{ title: string }> {
+  const meal = getMeal(db, mealId);
+  if (!meal) throw new AiError('upstream', `Pasto ${mealId} inesistente`);
+
+  const settings = getSettings(db);
+  const generator = opts.generator ?? defaultGenerator(settings.aiModel);
+  const maxRetries = opts.maxRetries ?? 2;
+  const weekStart = weekStartFor(meal.date, settings.weekStartDay);
+  const { loved, hated } = lovedAndHatedTitles(db);
+  const today = new Date().toLocaleDateString('en-CA');
+
+  const system = buildPlanContext({
+    language: settings.language,
+    profiles: listProfiles(db),
+    slotNames: [meal.slotName],
+    cells: [{ date: meal.date, slotName: meal.slotName }],
+    historyTitles: recentConsumedTitles(db, weekStart, 40),
+    lovedTitles: loved,
+    hatedTitles: hated,
+    pantryLines: pantryContextLines(db, today),
+  });
+
+  let lastIssue = '';
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const prompt =
+      'Genera UNA sola ricetta per la cella richiesta, diversa dalle precedenti.' +
+      (lastIssue ? `\n\nCorreggi: ${lastIssue}` : '');
+    let output: PlanOutput;
+    try {
+      output = planOutputSchema.parse(await generator({ system, prompt }));
+    } catch (err) {
+      if (isZodLike(err)) {
+        lastIssue = 'output non conforme';
+        continue;
+      }
+      throw mapProviderError(err);
+    }
+    const gen = output.meals.find(
+      (m) => m.date === meal.date && m.slot === meal.slotName,
+    );
+    if (!gen) {
+      lastIssue = 'la cella richiesta non è presente';
+      continue;
+    }
+    const dish = createDish(db, {
+      title: gen.title,
+      servingsBase: gen.servings,
+      steps: gen.steps,
+      language: settings.language,
+      source: 'ai',
+      ingredients: gen.ingredients,
+    });
+    setPlannedDish(db, mealId, dish.id);
+    return { title: dish.title };
+  }
+  throw new AiError('invalid_output', `Rigenerazione fallita (${lastIssue})`);
 }
 
 function isZodLike(err: unknown): boolean {

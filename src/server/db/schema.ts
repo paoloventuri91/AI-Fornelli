@@ -122,6 +122,28 @@ export const shoppingItems = sqliteTable('shopping_items', {
     .default('auto'),
 });
 
+// Thread di chat unico (con pruning ai messaggi più recenti).
+export const chatMessages = sqliteTable('chat_messages', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  role: text('role', { enum: ['user', 'assistant'] }).notNull(),
+  content: text('content').notNull(),
+  createdAt: text('created_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`),
+});
+
+// Audit dell'apprendimento: ogni preferenza appresa via chat.
+export const preferenceEvents = sqliteTable('preference_events', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  profileId: integer('profile_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'cascade' }),
+  text: text('text').notNull(),
+  createdAt: text('created_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`),
+});
+
 // Dispensa: scorte disponibili con scadenza opzionale (yyyy-mm-dd).
 export const pantryItems = sqliteTable('pantry_items', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -158,6 +180,8 @@ export type Settings = typeof settings.$inferSelect;
 export type Vote = typeof votes.$inferSelect;
 export type ShoppingItem = typeof shoppingItems.$inferSelect;
 export type PantryItem = typeof pantryItems.$inferSelect;
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type PreferenceEvent = typeof preferenceEvents.$inferSelect;
 export type Dish = typeof dishes.$inferSelect;
 export type DishIngredient = typeof dishIngredients.$inferSelect;
 export type WeekPlan = typeof weekPlans.$inferSelect;
