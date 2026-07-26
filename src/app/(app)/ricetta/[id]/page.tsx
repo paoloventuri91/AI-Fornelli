@@ -3,8 +3,11 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { getDb } from '@/server/db';
 import { getDish } from '@/server/services/dishes';
+import { listProfiles } from '@/server/services/profiles';
+import { getDishVotes } from '@/server/services/votes';
 import { Card } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
+import { DishVotes } from '@/components/dish-votes';
 
 export default async function RecipePage({
   params,
@@ -15,8 +18,14 @@ export default async function RecipePage({
   const dishId = Number.parseInt(id, 10);
   if (!Number.isInteger(dishId)) notFound();
 
-  const dish = getDish(getDb(), dishId);
+  const db = getDb();
+  const dish = getDish(db, dishId);
   if (!dish) notFound();
+
+  const profiles = listProfiles(db);
+  const voteRows = getDishVotes(db, dishId);
+  const votes: Record<number, number> = {};
+  for (const v of voteRows) votes[v.profileId] = v.value;
 
   const t = await getTranslations('recipe');
 
@@ -74,6 +83,12 @@ export default async function RecipePage({
             </ol>
           </Card>
         </>
+      )}
+
+      {profiles.length > 0 && (
+        <div className="mt-4">
+          <DishVotes dishId={dish.id} profiles={profiles} votes={votes} />
+        </div>
       )}
     </div>
   );

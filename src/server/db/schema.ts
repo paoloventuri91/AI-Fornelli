@@ -1,5 +1,11 @@
 import { sql } from 'drizzle-orm';
-import { integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import {
+  integer,
+  real,
+  sqliteTable,
+  text,
+  unique,
+} from 'drizzle-orm/sqlite-core';
 
 // Riga singola (id = 1): impostazioni globali dell'app.
 export const settings = sqliteTable('settings', {
@@ -100,10 +106,27 @@ export const meals = sqliteTable('meals', {
   absentProfilesJson: text('absent_profiles_json').notNull().default('[]'),
 });
 
+// Voti per persona su un piatto: +1 (piaciuto) / -1 (non piaciuto), uno per (profilo, piatto).
+export const votes = sqliteTable(
+  'votes',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    profileId: integer('profile_id')
+      .notNull()
+      .references(() => profiles.id, { onDelete: 'cascade' }),
+    dishId: integer('dish_id')
+      .notNull()
+      .references(() => dishes.id, { onDelete: 'cascade' }),
+    value: integer('value').notNull(), // +1 oppure -1
+  },
+  (t) => [unique().on(t.profileId, t.dishId)],
+);
+
 export type Profile = typeof profiles.$inferSelect;
 export type NewProfile = typeof profiles.$inferInsert;
 export type MealSlot = typeof mealSlots.$inferSelect;
 export type Settings = typeof settings.$inferSelect;
+export type Vote = typeof votes.$inferSelect;
 export type Dish = typeof dishes.$inferSelect;
 export type DishIngredient = typeof dishIngredients.$inferSelect;
 export type WeekPlan = typeof weekPlans.$inferSelect;

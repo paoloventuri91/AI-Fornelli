@@ -102,7 +102,9 @@
     "ingredients": "Ingredienti",
     "steps": "Procedimento",
     "sourceAi": "AI",
-    "sourceManual": "manuale"
+    "sourceManual": "manuale",
+    "likePrompt": "Vi è piaciuto?",
+    "votesHint": "i voti guidano l'AI"
   },
   "member": {
     "title": "Membro",
