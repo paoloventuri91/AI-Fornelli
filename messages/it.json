@@ -75,6 +75,7 @@
     "close": "Chiudi",
     "generateWeek": "✨ Genera settimana",
     "generating": "Genero…",
+    "adviceTitle": "Consiglio del giorno.",
     "errNoKey": "Chiave OpenRouter mancante: aggiungila nel .env del server.",
     "errTimeout": "Il modello non ha risposto in tempo, riprova.",
     "errUpstream": "Errore del servizio AI, riprova più tardi.",

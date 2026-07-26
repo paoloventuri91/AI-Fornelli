@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Field, Input } from '@/components/ui/field';
 import { Chip } from '@/components/ui/chip';
 import { DishForm, type DishFormValue } from '@/components/dish-form';
+import { AdviceBox } from '@/components/advice-box';
 import { cn } from '@/lib/cn';
 import type { MealView } from '@/server/services/planning';
 import {
@@ -139,6 +140,9 @@ export function PlanClient({
           {t('title')}
         </h2>
       </div>
+
+      {/* Consiglio del giorno */}
+      <AdviceBox />
 
       {/* Navigatore settimana */}
       <div className="mb-3 flex items-center justify-center gap-2">

@@ -122,6 +122,16 @@ export const shoppingItems = sqliteTable('shopping_items', {
     .default('auto'),
 });
 
+// Consiglio del giorno con cache per data (yyyy-mm-dd).
+export const dailyAdvice = sqliteTable('daily_advice', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  date: text('date').notNull().unique(),
+  text: text('text').notNull(),
+  createdAt: text('created_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`),
+});
+
 // Thread di chat unico (con pruning ai messaggi più recenti).
 export const chatMessages = sqliteTable('chat_messages', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -182,6 +192,7 @@ export type ShoppingItem = typeof shoppingItems.$inferSelect;
 export type PantryItem = typeof pantryItems.$inferSelect;
 export type ChatMessage = typeof chatMessages.$inferSelect;
 export type PreferenceEvent = typeof preferenceEvents.$inferSelect;
+export type DailyAdvice = typeof dailyAdvice.$inferSelect;
 export type Dish = typeof dishes.$inferSelect;
 export type DishIngredient = typeof dishIngredients.$inferSelect;
 export type WeekPlan = typeof weekPlans.$inferSelect;

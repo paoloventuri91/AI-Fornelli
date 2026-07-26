@@ -75,6 +75,7 @@
     "close": "Close",
     "generateWeek": "✨ Generate week",
     "generating": "Generating…",
+    "adviceTitle": "Today's tip.",
     "errNoKey": "OpenRouter key missing: add it to the server .env.",
     "errTimeout": "The model did not respond in time, try again.",
     "errUpstream": "AI service error, try again later.",
