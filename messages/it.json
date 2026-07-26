@@ -106,6 +106,20 @@
     "likePrompt": "Vi è piaciuto?",
     "votesHint": "i voti guidano l'AI"
   },
+  "pantry": {
+    "title": "Dispensa",
+    "add": "Aggiungi",
+    "name": "Ingrediente",
+    "quantity": "Q.tà",
+    "unit": "Unità",
+    "expiry": "Scadenza",
+    "noExpiry": "senza scadenza",
+    "expired": "scaduto",
+    "expiresToday": "scade oggi",
+    "expiresOn": "scad. {date}",
+    "empty": "Dispensa vuota.",
+    "aiNote": "L'AI privilegia gli ingredienti in scadenza quando genera il piano."
+  },
   "list": {
     "title": "Lista della spesa",
     "progress": "{done}/{total} presi",

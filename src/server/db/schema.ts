@@ -122,6 +122,19 @@ export const shoppingItems = sqliteTable('shopping_items', {
     .default('auto'),
 });
 
+// Dispensa: scorte disponibili con scadenza opzionale (yyyy-mm-dd).
+export const pantryItems = sqliteTable('pantry_items', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  nameNormalized: text('name_normalized').notNull(),
+  quantity: real('quantity'),
+  unit: text('unit', { enum: UNITS }).notNull(),
+  expiresOn: text('expires_on'), // yyyy-mm-dd, nullable
+  createdAt: text('created_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`),
+});
+
 // Voti per persona su un piatto: +1 (piaciuto) / -1 (non piaciuto), uno per (profilo, piatto).
 export const votes = sqliteTable(
   'votes',
@@ -144,6 +157,7 @@ export type MealSlot = typeof mealSlots.$inferSelect;
 export type Settings = typeof settings.$inferSelect;
 export type Vote = typeof votes.$inferSelect;
 export type ShoppingItem = typeof shoppingItems.$inferSelect;
+export type PantryItem = typeof pantryItems.$inferSelect;
 export type Dish = typeof dishes.$inferSelect;
 export type DishIngredient = typeof dishIngredients.$inferSelect;
 export type WeekPlan = typeof weekPlans.$inferSelect;

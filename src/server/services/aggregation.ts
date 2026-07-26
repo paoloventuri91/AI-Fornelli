@@ -79,30 +79,62 @@ function round(n: number): number {
  * - famiglie diverse per lo stesso nome → righe separate (errori economici, lista spuntabile);
  * - "qb" non ha quantità e viene soppresso se lo stesso nome ha una quantità numerica.
  */
-export function aggregateIngredients(items: RawIngredient[]): AggregatedItem[] {
+export type AggregateOptions = {
+  // Scorte da sottrarre (es. dispensa): sottratte per nome+famiglia; una copertura
+  // completa rimuove la voce, una parziale ne riduce la quantità. Non tocca le voci "qb".
+  subtract?: RawIngredient[];
+};
+
+export function aggregateIngredients(
+  items: RawIngredient[],
+  options: AggregateOptions = {},
+): AggregatedItem[] {
   // Raggruppa per nome normalizzato, poi per famiglia.
   type Group = {
     displayName: string;
-    families: Map<Family, { base: number; hasNumeric: boolean }>;
+    families: Map<Family, { base: number; hasNumeric: boolean; subtract: number }>;
   };
   const byName = new Map<string, Group>();
+
+  function ensure(name: string): Group {
+    const norm = normalizeName(name);
+    let group = byName.get(norm);
+    if (!group) {
+      group = { displayName: name.trim(), families: new Map() };
+      byName.set(norm, group);
+    }
+    return group;
+  }
 
   for (const raw of items) {
     const name = raw.name.trim();
     if (!name) continue;
-    const norm = normalizeName(name);
-    let group = byName.get(norm);
-    if (!group) {
-      group = { displayName: name, families: new Map() };
-      byName.set(norm, group);
-    }
+    const group = ensure(name);
     const family = familyOf(raw.unit);
-    const entry = group.families.get(family) ?? { base: 0, hasNumeric: false };
+    const entry = group.families.get(family) ?? {
+      base: 0,
+      hasNumeric: false,
+      subtract: 0,
+    };
     if (family !== 'qb' && raw.quantity != null && raw.quantity > 0) {
       entry.base += toBase(raw.quantity, raw.unit);
       entry.hasNumeric = true;
     }
     group.families.set(family, entry);
+  }
+
+  for (const raw of options.subtract ?? []) {
+    const name = raw.name.trim();
+    if (!name) continue;
+    const family = familyOf(raw.unit);
+    if (family === 'qb') continue;
+    if (raw.quantity == null || !(raw.quantity > 0)) continue;
+    const norm = normalizeName(name);
+    const group = byName.get(norm);
+    if (!group) continue; // niente da sottrarre se non è richiesto
+    const entry = group.families.get(family);
+    if (!entry) continue;
+    entry.subtract += toBase(raw.quantity, raw.unit);
   }
 
   const out: AggregatedItem[] = [];
@@ -124,7 +156,9 @@ export function aggregateIngredients(items: RawIngredient[]): AggregatedItem[] {
 
     // Una riga per ogni famiglia numerica; la qb viene soppressa.
     for (const [family, e] of numericFamilies) {
-      const { quantity, unit } = fromBase(e.base, family);
+      const net = e.base - e.subtract;
+      if (net <= 0) continue; // coperto dalla dispensa
+      const { quantity, unit } = fromBase(net, family);
       out.push({
         name: group.displayName,
         nameNormalized: norm,

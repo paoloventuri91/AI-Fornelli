@@ -10,6 +10,7 @@ import {
 } from '@/server/services/planning';
 import { createDish } from '@/server/services/dishes';
 import { lovedAndHatedTitles } from '@/server/services/votes';
+import { pantryContextLines } from '@/server/services/pantry';
 import { buildPlanContext, type PlanCell } from './context';
 import { planOutputSchema, type PlanOutput } from './planSchema';
 import { AiError, mapProviderError } from './errors';
@@ -59,6 +60,7 @@ export async function generatePlan(
   const wanted = new Set(cells.map((c) => cellKey(c.date, c.slotName)));
 
   const { loved, hated } = lovedAndHatedTitles(db);
+  const today = new Date().toLocaleDateString('en-CA');
   const system = buildPlanContext({
     language: settings.language,
     profiles: listProfiles(db),
@@ -67,6 +69,7 @@ export async function generatePlan(
     historyTitles: recentConsumedTitles(db, weekStart, 40),
     lovedTitles: loved,
     hatedTitles: hated,
+    pantryLines: pantryContextLines(db, today),
     freeConstraints: opts.freeConstraints,
   });
 

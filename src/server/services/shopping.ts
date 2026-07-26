@@ -7,6 +7,7 @@ import {
   normalizeName,
   type RawIngredient,
 } from './aggregation';
+import { pantryAsIngredients } from './pantry';
 
 export function listShopping(db: Db, weekStart: string): ShoppingItem[] {
   return db
@@ -41,7 +42,9 @@ export function regenerateShopping(
   weekStart: string,
   slots: SlotConfig[],
 ): ShoppingItem[] {
-  const aggregated = aggregateIngredients(weekIngredients(db, weekStart, slots));
+  const aggregated = aggregateIngredients(weekIngredients(db, weekStart, slots), {
+    subtract: pantryAsIngredients(db),
+  });
 
   db.transaction((tx) => {
     // Mappa degli spunti auto precedenti per (nome normalizzato + unità).

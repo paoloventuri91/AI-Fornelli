@@ -13,6 +13,7 @@ export type PlanContextInput = {
   historyTitles: string[];
   lovedTitles?: string[];
   hatedTitles?: string[];
+  pantryLines?: string[];
   freeConstraints?: string;
 };
 
@@ -28,6 +29,7 @@ const T = {
     history: 'Piatti recenti (NON ripeterli)',
     loved: 'Piatti amati (privilegiali per gusto simile)',
     hated: 'Piatti non graditi (evitali)',
+    pantry: 'Dispensa (privilegia gli ingredienti disponibili, soprattutto in scadenza)',
     constraints: "Vincoli dell'utente per questa settimana",
     cellsIntro:
       'Genera una ricetta completa (ingredienti dosati con unità tra g/kg/ml/l/pz/cucchiai/qb, e procedimento passo-passo) per ESATTAMENTE queste celle',
@@ -45,6 +47,7 @@ const T = {
     history: 'Recent dishes (do NOT repeat them)',
     loved: 'Loved dishes (favor similar tastes)',
     hated: 'Disliked dishes (avoid them)',
+    pantry: 'Pantry (favor available ingredients, especially expiring ones)',
     constraints: "User constraints for this week",
     cellsIntro:
       'Generate a complete recipe (ingredients with amounts in units among g/kg/ml/l/pz/cucchiai/qb, and step-by-step method) for EXACTLY these cells',
@@ -81,6 +84,12 @@ export function buildPlanContext(input: PlanContextInput): string {
   if (input.hatedTitles && input.hatedTitles.length > 0) {
     lines.push(`## ${t.hated}`);
     lines.push(input.hatedTitles.join(', '));
+    lines.push('');
+  }
+
+  if (input.pantryLines && input.pantryLines.length > 0) {
+    lines.push(`## ${t.pantry}`);
+    for (const line of input.pantryLines) lines.push(`- ${line}`);
     lines.push('');
   }
 
